@@ -3,7 +3,7 @@ package com.mcfly.pyl.menu;
 import android.app.Fragment;
 
 import com.mcfly.pyl.R;
-import com.mcfly.pyl.menu.fragments.PlaylistFragment;
+import com.mcfly.pyl.fragments.PlaylistFragment;
 
 /**
  * Created by mcfly on 02/01/2015.

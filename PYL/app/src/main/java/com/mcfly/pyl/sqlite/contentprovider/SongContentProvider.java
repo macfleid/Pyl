@@ -16,7 +16,7 @@ public class SongContentProvider extends ContentProvider {
     private DbManager dbManager;
     private static final String BASE_PATH = "Song";
 
-    public static final String AUTHORITY = "com.kayentis.epro.sqlite.contentprovider.SongContentProvider";
+    public static final String AUTHORITY = "com.mcfly.pyl.sqlite.contentprovider.SongContentProvider";
     public static final Uri CONTENT_URI = Uri.parse("content://" +AUTHORITY+ "/" + BASE_PATH);
     public static final String TYPE = "Song";
 

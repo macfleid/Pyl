@@ -1,7 +1,8 @@
 package com.mcfly.pyl.sqlite.dal.wrapper;
 
-import android.content.ContentValues;import java.io.Serializable;
-import com.mcfly.pyl.sqlite.utils.DateGetter;import com.mcfly.pyl.sqlite.dal.Comments;
+import android.content.ContentValues;
+import java.io.Serializable;
+import com.mcfly.pyl.sqlite.dal.Comments;
 import com.mcfly.pyl.sqlite.cursor.CommentsCursor;
 import java.util.Date;
 

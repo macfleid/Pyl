@@ -15,15 +15,19 @@ import android.net.Uri;
 public class PlaylistContentProvider extends ContentProvider {
     private DbManager dbManager;
     private static final String BASE_PATH = "Playlist";
+    private static final String PLAYLIST_PATH = "Playlist";
 
-    public static final String AUTHORITY = "com.kayentis.epro.sqlite.contentprovider.PlaylistContentProvider";
+    public static final String AUTHORITY = "com.mcfly.pyl.sqlite.contentprovider.PlaylistContentProvider";
     public static final Uri CONTENT_URI = Uri.parse("content://" +AUTHORITY+ "/" + BASE_PATH);
+    public static final Uri PLAYLIST_URI = Uri.parse("content://" +AUTHORITY+ "/" + BASE_PATH+ "/" + PLAYLIST_PATH);
     public static final String TYPE = "Playlist";
 
     private static final int DEFAULT_CODE = 1;
+    private static final int PLAYLIST_CODE = 2;
     private static final UriMatcher sURIMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         static {
             sURIMatcher.addURI(AUTHORITY, BASE_PATH, DEFAULT_CODE);
+            sURIMatcher.addURI(AUTHORITY, BASE_PATH + "/" + PLAYLIST_PATH , PLAYLIST_CODE);
     }
 
     @Override
@@ -64,8 +68,15 @@ public class PlaylistContentProvider extends ContentProvider {
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
         String groupBy = "";
 
-        queryBuilder.setTables(Playlist.TABLE_NAME);
         int uriType = sURIMatcher.match(uri);
+        switch (uriType) {
+            case PLAYLIST_CODE:
+                queryBuilder.setTables("Playlist_list");
+                break;
+            case DEFAULT_CODE:
+                queryBuilder.setTables(Playlist.TABLE_NAME);
+                break;
+        }
         Cursor cursor = queryBuilder.query(database,null,selection,null,groupBy,null,null);
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
         return cursor;

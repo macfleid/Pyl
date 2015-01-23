@@ -1,31 +1,25 @@
 package com.mcfly.pyl;
 
-import java.util.Locale;
-
 import android.app.Activity;
 import android.app.ActionBar;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.support.v13.app.FragmentPagerAdapter;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
+import com.mcfly.pyl.business.ContactListBusiness;
 import com.mcfly.pyl.menu.MainMenu;
 import com.mcfly.pyl.menu.MainPagerAdapter;
-import com.mcfly.pyl.menu.fragments.PlaylistFragment;
-import com.mcfly.pyl.sqlite.dal.Playlist;
+import com.mcfly.pyl.fragments.PlaylistFragment;
 
 
 public class MainActivity extends Activity implements ActionBar.TabListener, PlaylistFragment.OnFragmentInteractionListener {
 
+    private final static String TAG = MainActivity.class.getName();
 
     MainPagerAdapter mSectionsPagerAdapter;
     ViewPager mViewPager;
@@ -51,6 +45,8 @@ public class MainActivity extends Activity implements ActionBar.TabListener, Pla
         });
 
         initMenu();
+
+        test();
     }
 
 
@@ -97,5 +93,22 @@ public class MainActivity extends Activity implements ActionBar.TabListener, Pla
     @Override
     public void onFragmentInteraction(String id) {
 
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+
+
+    private void test() {
+        Log.d(TAG,"[test]");
+        ContactListBusiness business = new ContactListBusiness(getApplicationContext());
+        Cursor cursor = business.getContacts();
+        if(cursor==null || !cursor.moveToFirst()) {
+            Log.d(TAG,"[empty cursor]");
+            return;
+        }
+        do {
+            Log.d(TAG,"[]"+cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME)));
+        } while (cursor.moveToNext());
+        Log.d(TAG,"[end of test]");
     }
 }

@@ -24,4 +24,15 @@ public class PlaylistDAO extends BaseDAO implements IPlaylist {
        int result = add(PlaylistDalWrapper.getContentValueFromObject(element));
        return result;
     }
+
+    @Override
+    public Cursor getPlaylists() {
+        Cursor cursor = this.context.getContentResolver().query(
+                PlaylistContentProvider.PLAYLIST_URI,
+                null,
+                null,
+                null,
+                null);
+        return cursor;
+    }
 }

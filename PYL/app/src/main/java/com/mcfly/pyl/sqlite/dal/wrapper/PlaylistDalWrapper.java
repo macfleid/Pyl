@@ -1,8 +1,11 @@
 package com.mcfly.pyl.sqlite.dal.wrapper;
 
-import android.content.ContentValues;import java.io.Serializable;
-import com.mcfly.pyl.sqlite.utils.DateGetter;import com.mcfly.pyl.sqlite.dal.Playlist;
+import android.content.ContentValues;
+import java.io.Serializable;
+import com.mcfly.pyl.sqlite.dal.Playlist;
 import com.mcfly.pyl.sqlite.cursor.PlaylistCursor;
+import com.mcfly.pyl.utils.DateGetter;
+
 import java.util.Date;
 
 public class PlaylistDalWrapper {

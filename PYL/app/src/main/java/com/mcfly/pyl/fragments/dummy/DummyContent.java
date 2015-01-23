@@ -1,4 +1,4 @@
-package com.mcfly.pyl.menu.fragments.dummy;
+package com.mcfly.pyl.fragments.dummy;
 
 import java.util.ArrayList;
 import java.util.HashMap;

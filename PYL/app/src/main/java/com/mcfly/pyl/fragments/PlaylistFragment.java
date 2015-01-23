@@ -1,4 +1,4 @@
-package com.mcfly.pyl.menu.fragments;
+package com.mcfly.pyl.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,11 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import com.mcfly.pyl.R;
-import com.mcfly.pyl.menu.fragments.dummy.DummyContent;
+import com.mcfly.pyl.adapters.IPlaylistAdapterHelper;
+import com.mcfly.pyl.adapters.PlaylistAdapterHelper;
 
 
 /**
@@ -40,6 +40,8 @@ public class PlaylistFragment extends Fragment implements AbsListView.OnItemClic
 
     private ListAdapter mAdapter;
 
+    private IPlaylistAdapterHelper playlistAdapterHelper;
+
     // TODO: Rename and change types of parameters
     public static PlaylistFragment newInstance(String param1, String param2) {
         PlaylistFragment fragment = new PlaylistFragment();
@@ -47,6 +49,7 @@ public class PlaylistFragment extends Fragment implements AbsListView.OnItemClic
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -66,9 +69,12 @@ public class PlaylistFragment extends Fragment implements AbsListView.OnItemClic
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        // TODO: Change Adapter to display your content
-        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
+        playlistAdapterHelper = new PlaylistAdapterHelper();
+        mAdapter = playlistAdapterHelper.getPlayListAdapter(getActivity());
+
+//        // TODO: Change Adapter to display your content
+//        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
+//                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
     }
 
     @Override
@@ -104,11 +110,11 @@ public class PlaylistFragment extends Fragment implements AbsListView.OnItemClic
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (null != mListener) {
-            // Notify the active callbacks interface (the activity, if the
-            // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
-        }
+//        if (null != mListener) {
+//            // Notify the active callbacks interface (the activity, if the
+//            // fragment is attached to one) that an item has been selected.
+//            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+//        }
     }
 
     /**

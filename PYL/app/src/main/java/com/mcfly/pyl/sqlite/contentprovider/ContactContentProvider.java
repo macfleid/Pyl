@@ -16,7 +16,7 @@ public class ContactContentProvider extends ContentProvider {
     private DbManager dbManager;
     private static final String BASE_PATH = "Contact";
 
-    public static final String AUTHORITY = "com.kayentis.epro.sqlite.contentprovider.ContactContentProvider";
+    public static final String AUTHORITY = "com.mcfly.pyl.sqlite.contentprovider.ContactContentProvider";
     public static final Uri CONTENT_URI = Uri.parse("content://" +AUTHORITY+ "/" + BASE_PATH);
     public static final String TYPE = "Contact";
 

@@ -1,8 +1,10 @@
 package com.mcfly.pyl.sqlite.dal.wrapper;
 
 import android.content.ContentValues;import java.io.Serializable;
-import com.mcfly.pyl.sqlite.utils.DateGetter;import com.mcfly.pyl.sqlite.dal.Song;
+import com.mcfly.pyl.sqlite.dal.Song;
 import com.mcfly.pyl.sqlite.cursor.SongCursor;
+import com.mcfly.pyl.utils.DateGetter;
+
 import java.util.Date;
 
 public class SongDalWrapper {

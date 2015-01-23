@@ -1,7 +1,7 @@
 package com.mcfly.pyl.sqlite.dal.wrapper;
 
 import android.content.ContentValues;import java.io.Serializable;
-import com.mcfly.pyl.sqlite.utils.DateGetter;import com.mcfly.pyl.sqlite.dal.Contact;
+import com.mcfly.pyl.sqlite.dal.Contact;
 import com.mcfly.pyl.sqlite.cursor.ContactCursor;
 import java.util.Date;
 

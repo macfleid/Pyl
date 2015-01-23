@@ -16,7 +16,7 @@ public class CommentsContentProvider extends ContentProvider {
     private DbManager dbManager;
     private static final String BASE_PATH = "Comments";
 
-    public static final String AUTHORITY = "com.kayentis.epro.sqlite.contentprovider.CommentsContentProvider";
+    public static final String AUTHORITY = "com.mcfly.pyl.sqlite.contentprovider.CommentsContentProvider";
     public static final Uri CONTENT_URI = Uri.parse("content://" +AUTHORITY+ "/" + BASE_PATH);
     public static final String TYPE = "Comments";
 
