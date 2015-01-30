@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 /*
 * AUTO GENERATED FILE 
-* creation date : 2015-01-02 11:43 
+* creation date : 2015-01-30 11:43 
 */
 public class Comments implements Serializable { 
 

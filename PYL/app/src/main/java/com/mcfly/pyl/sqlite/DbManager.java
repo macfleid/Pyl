@@ -28,7 +28,7 @@ public class DbManager extends SQLiteOpenHelper
     public static final String DATABASE_NAME = "PYLdb.db";
 
     public static final String DATABASE_DATABASE_CREATE_FILENAME = "create.sql";
-    public static final String DATABASE_DATABASE_CREATE_BASETEST = "baseTest.sql";
+    public static final String DATABASE_DATABASE_CREATE_BASETEST = "testDb.sql";
 
     public static final String DATABASE_DATABASE_VIEWS = "views.sql";
     public static final String DATABASE_DATABASE_TRIGGERS = "triggers.sql";
@@ -54,7 +54,7 @@ public class DbManager extends SQLiteOpenHelper
         Log.d("DbManager", "...call onCreate");
         createFromSQL(db);
         createViews(db);
-        createTriggers(db);
+//        createTriggers(db);
     }
 
     @Override
@@ -73,6 +73,12 @@ public class DbManager extends SQLiteOpenHelper
         Log.d("DbManager", "...call onUpgrade");
 //		db.execSQL("DROP TABLE IF EXISTS " + IFormTable.TABLE_NAME);
         onCreate(db);
+    }
+
+
+    public void executeTestFile() {
+        SQLiteDatabase db = getWritableDatabase();
+        executeSQL(db);
     }
     
     //----------------------------
@@ -102,23 +108,6 @@ public class DbManager extends SQLiteOpenHelper
         } catch (IOException e1) {
             e1.printStackTrace();
         }
-        
-//        File file = new File(db.getPath());
-//    	byte fileContent[] = new byte[(int)file.length()];
-//    	try {
-//			inputStream.read(fileContent);
-//		} catch (IOException e) {
-//			KLog.e(context, TAG, "error while copyDataBase_",e);
-//		} finally {
-//			try {
-//				inputStream.close();
-//			} catch (IOException e) {
-//				 KLog.e(context, TAG, "error while closing writer",e);
-//			}
-//		}
-//    	return fileContent;
-        
-        
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         int read = 0;
         try {
@@ -138,25 +127,6 @@ public class DbManager extends SQLiteOpenHelper
 			}
 		}
         return baos.toByteArray();
-        
-        
-//        BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
-//        StringBuilder total = new StringBuilder();
-//        String line;
-//        try {
-//            while ((line = r.readLine()) != null) {
-//                total.append(line);
-//            }
-//        } catch (IOException e) {
-//            KLog.e(context, TAG, "error while copyDataBase_",e);
-//        } finally {
-//        	try {
-//				r.close();
-//			} catch (IOException e) {
-//				 KLog.e(context, TAG, "error while closing reader",e);
-//			}
-//        }
-//       return total.toString().getBytes();
     }
     
     
@@ -246,7 +216,7 @@ public class DbManager extends SQLiteOpenHelper
     }
     
     
-    private String readFile(String path) {
+    private void executeSQL(SQLiteDatabase db) {
     	InputStream is = null;
     	try {
     		is = context.getAssets().open(DATABASE_DATABASE_CREATE_BASETEST);
@@ -261,9 +231,15 @@ public class DbManager extends SQLiteOpenHelper
     			stringBuilder.append(line);
             }
     	} catch (IOException e ) {
-    		Log.e(TAG, "Error while reading file "+path, e);
+    		Log.e(TAG, "Error while reading file ", e);
     	}
-    	return stringBuilder.toString();
+        Log.d(TAG, db.getPath());
+        String[] statements = getStatementsFromFile(stringBuilder.toString());
+        Log.d(TAG, statements.length+" statements will be executed");
+        for(String statement : statements) {
+        	Log.d(TAG, "###"+statement);
+            db.execSQL(statement);
+        }
     }
     
     

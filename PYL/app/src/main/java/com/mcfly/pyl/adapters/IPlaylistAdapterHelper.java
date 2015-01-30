@@ -1,6 +1,8 @@
 package com.mcfly.pyl.adapters;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 
 /**
@@ -8,5 +10,6 @@ import android.widget.ListAdapter;
  */
 public interface IPlaylistAdapterHelper {
 
-    public ListAdapter getPlayListAdapter(Context context);
+    public BaseAdapter getPlayListAdapter(Context context, Cursor cursor);
+
 }

@@ -1,4 +1,10 @@
 <provider 
+    android:name="com.mcfly.pyl.sqlite.contentprovider.ContactContentProvider" 
+    android:authorities="com.mcfly.pyl.sqlite.contentprovider.ContactContentProvider" 
+    android:enabled="true"
+    android:exported="false" >
+</provider>
+<provider 
     android:name="com.mcfly.pyl.sqlite.contentprovider.PlaylistContentProvider" 
     android:authorities="com.mcfly.pyl.sqlite.contentprovider.PlaylistContentProvider" 
     android:enabled="true"
@@ -7,12 +13,6 @@
 <provider 
     android:name="com.mcfly.pyl.sqlite.contentprovider.SongContentProvider" 
     android:authorities="com.mcfly.pyl.sqlite.contentprovider.SongContentProvider" 
-    android:enabled="true"
-    android:exported="false" >
-</provider>
-<provider 
-    android:name="com.mcfly.pyl.sqlite.contentprovider.ContactContentProvider" 
-    android:authorities="com.mcfly.pyl.sqlite.contentprovider.ContactContentProvider" 
     android:enabled="true"
     android:exported="false" >
 </provider>

@@ -20,7 +20,7 @@ public class ContactListBusiness {
         this.context = context;
     }
 
-    public Cursor getContacts() {
+    public Cursor getAvailableContacts() {
         Cursor cursor = null;
         Uri uri = ContactsContract.Contacts.CONTENT_URI;
 
@@ -33,5 +33,9 @@ public class ContactListBusiness {
         String[] selectionArgs = null;
         cursor = context.getContentResolver().query(uri,projection,selection,selectionArgs,order);
         return cursor;
+    }
+
+    public Cursor getAppContacts() {
+        return null;
     }
 }

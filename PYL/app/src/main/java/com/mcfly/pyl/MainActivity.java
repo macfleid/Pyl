@@ -2,7 +2,9 @@ package com.mcfly.pyl;
 
 import android.app.Activity;
 import android.app.ActionBar;
+import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -12,12 +14,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.mcfly.pyl.business.ContactListBusiness;
+import com.mcfly.pyl.fragments.PlaylistSongsFragment;
 import com.mcfly.pyl.menu.MainMenu;
 import com.mcfly.pyl.menu.MainPagerAdapter;
 import com.mcfly.pyl.fragments.PlaylistFragment;
+import com.mcfly.pyl.sqlite.DbManager;
+import com.mcfly.pyl.sqlite.dal.Playlist;
 
 
-public class MainActivity extends Activity implements ActionBar.TabListener, PlaylistFragment.OnFragmentInteractionListener {
+public class MainActivity extends Activity implements ActionBar.TabListener, PlaylistFragment.OnFragmentInteractionListener, IPlaylistActions {
 
     private final static String TAG = MainActivity.class.getName();
 
@@ -46,7 +51,8 @@ public class MainActivity extends Activity implements ActionBar.TabListener, Pla
 
         initMenu();
 
-        test();
+        //Fill test database
+       // DbManager.getInstance(this).executeTestFile();
     }
 
 
@@ -60,6 +66,12 @@ public class MainActivity extends Activity implements ActionBar.TabListener, Pla
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            return true;
+        } else if ( id == R.id.action_contacts) {
+            bindContactList();
+            return true;
+        } else if (id == R.id.action_create_playlist) {
+            bindCreatePlaylist();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -97,18 +109,27 @@ public class MainActivity extends Activity implements ActionBar.TabListener, Pla
 
     /////////////////////////////////////////////////////////////////////////////////////////
 
-
-    private void test() {
-        Log.d(TAG,"[test]");
-        ContactListBusiness business = new ContactListBusiness(getApplicationContext());
-        Cursor cursor = business.getContacts();
-        if(cursor==null || !cursor.moveToFirst()) {
-            Log.d(TAG,"[empty cursor]");
-            return;
-        }
-        do {
-            Log.d(TAG,"[]"+cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME)));
-        } while (cursor.moveToNext());
-        Log.d(TAG,"[end of test]");
+    private void bindContactList() {
+        Intent intent = new Intent(this, ContactListActivity.class);
+        startActivity(intent);
     }
+
+    private void bindCreatePlaylist() {
+        Intent intent = new Intent(this, CreatePlaylistActivity.class);
+        startActivity(intent);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    ///// IPlaylistActions
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public void showPlaylist(Playlist playlist) {
+        Fragment fragment = new PlaylistSongsFragment();
+        mSectionsPagerAdapter.switchFragment(mViewPager.getCurrentItem(), fragment);
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+
+
 }

@@ -14,8 +14,13 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- CREATE PLAYLIST -->
+    <string name="create_activity_title">Create playlist</string>
     <string name="create_playlist_title_hint">Title</string>
     <string name="create_playlist_title_save">Save</string>
     <string name="create_playlist_title_cancel">Cancel</string>
+
+
+    <!-- CONTACT LIST -->
+    <string name="contact_activity_title">Manage contacts</string>
 
 </resources>

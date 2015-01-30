@@ -8,11 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import com.mcfly.pyl.R;
 import com.mcfly.pyl.adapters.IPlaylistAdapterHelper;
 import com.mcfly.pyl.adapters.PlaylistAdapterHelper;
+import com.mcfly.pyl.business.PlaylistBusiness;
 
 
 /**
@@ -26,30 +29,17 @@ import com.mcfly.pyl.adapters.PlaylistAdapterHelper;
  */
 public class PlaylistFragment extends Fragment implements AbsListView.OnItemClickListener {
 
-    // TODO: Rename parameter arguments, choose names that match
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     private OnFragmentInteractionListener mListener;
 
     private AbsListView mListView;
 
-    private ListAdapter mAdapter;
+    private BaseAdapter mAdapter;
 
     private IPlaylistAdapterHelper playlistAdapterHelper;
 
-    // TODO: Rename and change types of parameters
+
     public static PlaylistFragment newInstance(String param1, String param2) {
         PlaylistFragment fragment = new PlaylistFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-
         return fragment;
     }
 
@@ -64,17 +54,9 @@ public class PlaylistFragment extends Fragment implements AbsListView.OnItemClic
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
+        PlaylistBusiness business = new PlaylistBusiness(this.getActivity());
         playlistAdapterHelper = new PlaylistAdapterHelper();
-        mAdapter = playlistAdapterHelper.getPlayListAdapter(getActivity());
-
-//        // TODO: Change Adapter to display your content
-//        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-//                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
+        mAdapter = playlistAdapterHelper.getPlayListAdapter(this.getActivity(), business.getPlaylist());
     }
 
     @Override
@@ -83,7 +65,7 @@ public class PlaylistFragment extends Fragment implements AbsListView.OnItemClic
         View view = inflater.inflate(R.layout.playlist, container, false);
 
         mListView = (AbsListView) view.findViewById(android.R.id.list);
-        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
+        mListView.setAdapter(mAdapter);
 
         mListView.setOnItemClickListener(this);
 
@@ -117,18 +99,6 @@ public class PlaylistFragment extends Fragment implements AbsListView.OnItemClic
 //        }
     }
 
-    /**
-     * The default content for this Fragment has a TextView that is shown when
-     * the list is empty. If you would like to change the text, call this method
-     * to supply the text it should use.
-     */
-    public void setEmptyText(CharSequence emptyText) {
-        View emptyView = mListView.getEmptyView();
-
-        if (emptyText instanceof TextView) {
-            ((TextView) emptyView).setText(emptyText);
-        }
-    }
 
     /**
     * This interface must be implemented by activities that contain this

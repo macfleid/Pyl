@@ -4,6 +4,8 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v13.app.FragmentStatePagerAdapter;
+import android.util.Log;
 
 import com.mcfly.pyl.MainActivity;
 
@@ -12,19 +14,42 @@ import java.util.Locale;
 /**
  * Created by mcfly on 02/01/2015.
  */
-public class MainPagerAdapter extends FragmentPagerAdapter {
+public class MainPagerAdapter extends FragmentStatePagerAdapter {
+
+    private final static String TAG = MainPagerAdapter.class.getName();
 
     private Context context;
+
+    private boolean forceRefresh;
+    private int refreshedPosition;
+    private Fragment refreshedFragment;
 
     public MainPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
+        forceRefresh = false;
     }
 
     @Override
     public Fragment getItem(int position) {
+        Log.d(TAG, "   [getItem] on position "+position);
+        if(forceRefresh && position==refreshedPosition) {
+            Log.d(TAG, "      [forceRefresh] on position "+position);
+            forceRefresh = false;
+            return refreshedFragment;
+        }
         MainMenu[] values = MainMenu.values();
         return values[position].getFragment();
+    }
+
+    @Override
+    public int getItemPosition(Object object) {
+        Log.d(TAG, "[getItemPosition]");
+        if(forceRefresh) {
+            Log.d(TAG, " -->[POSITION_NONE]");
+            return POSITION_NONE ;
+        }
+        return super.getItemPosition(object);
     }
 
     @Override
@@ -44,5 +69,13 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
                 return context.getResources().getString(MainMenu.FAVORITES.getTitle()).toUpperCase(l);
         }
         return null;
+    }
+
+    public void switchFragment(int position, Fragment fragment) {
+        Log.d(TAG, "[switchFragment] position:"+position);
+        forceRefresh = true ;
+        refreshedPosition = position;
+        refreshedFragment = fragment;
+        this.notifyDataSetChanged();
     }
 }

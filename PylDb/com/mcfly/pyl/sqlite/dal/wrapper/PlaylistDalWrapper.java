@@ -14,11 +14,12 @@ public class PlaylistDalWrapper {
         object_.setrate(cursor.getInt(2+start));
         Date date = DateGetter.getInstance().getDateFromString(cursor.getString(3+start));
         object_.setdate(date);
+        object_.setContact__id(cursor.getInt(4+start));
         return object_;
     }
 
     public static int getNbColumns() { 
-        return 4;
+        return 5;
     }
 
     public static ContentValues getContentValueFromObject(Serializable object) { 
@@ -29,6 +30,7 @@ public class PlaylistDalWrapper {
         values.put(Playlist.COLUMN_RATE,object_.getrate());
         String dateString = DateGetter.getInstance().getStringFromDate(object_.getdate());
         values.put(Playlist.COLUMN_DATE,dateString);
+        values.put(Playlist.COLUMN_CONTACT__ID,object_.getContact__id());
         return values;
     }
 

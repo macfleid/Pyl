@@ -10,17 +10,19 @@ public class ContactDalWrapper {
     public static Contact getObjectFromDB(ContactCursor cursor, int start) { 
         Contact object_ = new Contact();
         object_.set_id(cursor.getInt(0+start));
+        object_.setvalidated(cursor.getInt(1+start) == 0 ? false : true );
         return object_;
     }
 
     public static int getNbColumns() { 
-        return 1;
+        return 2;
     }
 
     public static ContentValues getContentValueFromObject(Serializable object) { 
         Contact object_ = (Contact) object;
         ContentValues values = new ContentValues();
         values.put(Contact.COLUMN__ID,object_.get_id());
+        values.put(Contact.COLUMN_VALIDATED,object_.getvalidated());
         return values;
     }
 
