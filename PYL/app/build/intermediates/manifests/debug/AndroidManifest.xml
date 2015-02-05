@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mcfly.pyl"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="20" />
+
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.mcfly.pyl.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.mcfly.pyl.ContactListActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.mcfly.pyl.CreatePlaylistActivity"
+            android:label="@string/app_name" >
+        </activity>
+
+        <provider
+            android:name="com.mcfly.pyl.sqlite.contentprovider.PlaylistContentProvider"
+            android:authorities="com.mcfly.pyl.sqlite.contentprovider.PlaylistContentProvider"
+            android:enabled="true"
+            android:exported="false" >
+        </provider>
+        <provider
+            android:name="com.mcfly.pyl.sqlite.contentprovider.SongContentProvider"
+            android:authorities="com.mcfly.pyl.sqlite.contentprovider.SongContentProvider"
+            android:enabled="true"
+            android:exported="false" >
+        </provider>
+        <provider
+            android:name="com.mcfly.pyl.sqlite.contentprovider.ContactContentProvider"
+            android:authorities="com.mcfly.pyl.sqlite.contentprovider.ContactContentProvider"
+            android:enabled="true"
+            android:exported="false" >
+        </provider>
+        <provider
+            android:name="com.mcfly.pyl.sqlite.contentprovider.CommentsContentProvider"
+            android:authorities="com.mcfly.pyl.sqlite.contentprovider.CommentsContentProvider"
+            android:enabled="true"
+            android:exported="false" >
+        </provider>
+    </application>
+
+</manifest>

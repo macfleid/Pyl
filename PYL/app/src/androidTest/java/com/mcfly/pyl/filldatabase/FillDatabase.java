@@ -44,6 +44,7 @@ public class FillDatabase extends ActivityInstrumentationTestCase2<MainActivity>
 
         //-- 3 get the activity with Intent
         this.activity = getActivity();
+        testFillDatabase();
     }
 
     @Override
@@ -64,9 +65,10 @@ public class FillDatabase extends ActivityInstrumentationTestCase2<MainActivity>
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    public void testFillDatabase() {
+    private void testFillDatabase() {
         Log.d(TAG, String.format("[fillDatabase][rollback %s]", String.valueOf(rollback)));
         DbManager.getInstance(context).executeTestFile();
     }
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

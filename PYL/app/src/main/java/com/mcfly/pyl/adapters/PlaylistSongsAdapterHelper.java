@@ -46,7 +46,7 @@ public class PlaylistSongsAdapterHelper {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.playlist_element, parent, false);
+            View view = inflater.inflate(R.layout.playlist_song_element, parent, false);
             setLayout(view, getItem(position));
             return view;
         }

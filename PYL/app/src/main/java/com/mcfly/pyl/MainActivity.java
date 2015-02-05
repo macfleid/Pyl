@@ -52,7 +52,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener, Pla
         initMenu();
 
         //Fill test database
-       // DbManager.getInstance(this).executeTestFile();
+       //DbManager.getInstance(this).executeTestFile();
     }
 
 
@@ -126,6 +126,9 @@ public class MainActivity extends Activity implements ActionBar.TabListener, Pla
     @Override
     public void showPlaylist(Playlist playlist) {
         Fragment fragment = new PlaylistSongsFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(PlaylistSongsFragment.KEY_PLAYLIST_OBJECT,playlist);
+        fragment.setArguments(bundle);
         mSectionsPagerAdapter.switchFragment(mViewPager.getCurrentItem(), fragment);
     }
 

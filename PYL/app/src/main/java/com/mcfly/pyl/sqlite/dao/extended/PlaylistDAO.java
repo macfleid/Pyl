@@ -88,7 +88,7 @@ public class PlaylistDAO extends BaseDAO implements IPlaylist {
     @Override
     public Cursor getPlaylistSongsView(Playlist playlist) {
         Cursor cursor = this.context.getContentResolver().query(
-                PlaylistContentProvider.PLAYLIST_URI,
+                PlaylistContentProvider.PLAYLIST_SONGS_URI,
                 null,
                 String.format("%s=%s", Song.COLUMN_PLAYLIST__ID, playlist.get_id()),
                 null,
