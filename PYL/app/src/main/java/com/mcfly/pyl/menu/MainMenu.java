@@ -1,6 +1,7 @@
 package com.mcfly.pyl.menu;
 
 import android.app.Fragment;
+import android.os.Bundle;
 
 import com.mcfly.pyl.R;
 import com.mcfly.pyl.fragments.PlaylistFragment;
@@ -20,6 +21,9 @@ public enum MainMenu {
     private MainMenu(int res, Fragment fragment) {
         this.title = res;
         this.fragment = fragment;
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(PlaylistFragment.PLAYLIST_LIST_MODE, this);
+        this.fragment.setArguments(bundle);
     }
 
     public int getTitle() {

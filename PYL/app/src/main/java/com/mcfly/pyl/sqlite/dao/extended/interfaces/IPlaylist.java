@@ -12,6 +12,12 @@ public interface IPlaylist {
 
     public Cursor getPlaylists(int contactId);
 
+    public Cursor getMyPlaylists();
+
+    public Cursor getSharedPlaylists();
+
+    public Cursor getFavoritesPlaylists();
+
     public Cursor getPlaylistsExcept(int contactId);
 
     public Cursor getPlaylistSongsView(Playlist playlist);

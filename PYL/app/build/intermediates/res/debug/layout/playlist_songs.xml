@@ -13,17 +13,18 @@
             style="@style/frame_button.leftAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FFF"
-            android:text=" i "/>
+            android:text="&#60;"/>
         <TextView
             style="@style/titles"
             android:layout_marginLeft="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="PLAYLIST TITLE"
             android:id="@+id/playlist_title"
-            android:layout_gravity="center_horizontal" />
+            android:gravity="right" />
     </FrameLayout>
 
 

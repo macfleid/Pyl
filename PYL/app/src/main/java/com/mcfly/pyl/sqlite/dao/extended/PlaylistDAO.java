@@ -75,6 +75,39 @@ public class PlaylistDAO extends BaseDAO implements IPlaylist {
     }
 
     @Override
+    public Cursor getMyPlaylists() {
+        Cursor cursor = this.context.getContentResolver().query(
+                PlaylistContentProvider.PLAYLIST_URI,
+                null,
+                String.format("arg_contact_id is null"),
+                null,
+                null);
+        return cursor;
+    }
+
+    @Override
+    public Cursor getSharedPlaylists() {
+        Cursor cursor = this.context.getContentResolver().query(
+                PlaylistContentProvider.PLAYLIST_URI,
+                null,
+                String.format("arg_contact_id is not null"),
+                null,
+                null);
+        return cursor;
+    }
+
+    @Override
+    public Cursor getFavoritesPlaylists() {
+        Cursor cursor = this.context.getContentResolver().query(
+                PlaylistContentProvider.PLAYLIST_URI,
+                null,
+                String.format("%s=1", Playlist.COLUMN_FAV),
+                null,
+                null);
+        return cursor;
+    }
+
+    @Override
     public Cursor getPlaylistsExcept(int contactId) {
         Cursor cursor = this.context.getContentResolver().query(
                 PlaylistContentProvider.PLAYLIST_URI,

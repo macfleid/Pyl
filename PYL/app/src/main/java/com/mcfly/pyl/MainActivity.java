@@ -52,7 +52,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener, Pla
         initMenu();
 
         //Fill test database
-       //DbManager.getInstance(this).executeTestFile();
+//       DbManager.getInstance(this).executeTestFile();
     }
 
 

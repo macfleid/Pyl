@@ -39,6 +39,7 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
             return refreshedFragment;
         }
         MainMenu[] values = MainMenu.values();
+
         return values[position].getFragment();
     }
 

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 /*
 * AUTO GENERATED FILE 
-* creation date : 2015-01-30 11:43 
+* creation date : 2015-02-06 14:16 
 */
 public class Playlist implements Serializable { 
 
@@ -13,12 +13,14 @@ public class Playlist implements Serializable {
     public final static String COLUMN_TITLE="title"; 
     public final static String COLUMN_RATE="rate"; 
     public final static String COLUMN_DATE="date"; 
+    public final static String COLUMN_FAV="fav"; 
     public final static String COLUMN_CONTACT__ID="Contact__id"; 
 
     private int _id;
     private String title;
     private int rate;
     private Date date;
+    private boolean fav;
     private int Contact__id;
 
     public int get_id() { 
@@ -48,6 +50,13 @@ public class Playlist implements Serializable {
 
     public void setdate(Date obj) {
         this.date = obj;
+    }
+    public boolean getfav() { 
+        return fav;
+    }
+
+    public void setfav(boolean obj) {
+        this.fav = obj;
     }
     public int getContact__id() { 
         return Contact__id;

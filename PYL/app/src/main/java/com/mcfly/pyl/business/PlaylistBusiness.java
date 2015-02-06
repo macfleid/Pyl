@@ -16,34 +16,25 @@ import java.util.List;
 public class PlaylistBusiness {
 
     private final Context context;
+    private PlaylistDAO playlistDAO;
 
     public PlaylistBusiness(Context context) {
         this.context = context;
+        playlistDAO = new PlaylistDAO(context);
     }
 
-    public Cursor getPlaylist() {
-        PlaylistDAO playlistDAO = new PlaylistDAO(context);
-        return playlistDAO.getPlaylists();
-    }
+    public Cursor getPlaylist() { return playlistDAO.getPlaylists(); }
 
-    public Cursor getPlaylist_shared() {
-        return null;
-    }
+    public Cursor getPlaylist_shared() {  return playlistDAO.getSharedPlaylists() ; }
 
     public Cursor getPlaylist_favorites() {
-        return null;
+        return playlistDAO.getFavoritesPlaylists();
     }
 
     public Cursor getPlaylist_mines() {
-        return null;
+        return playlistDAO.getMyPlaylists();
     }
 
-    public Cursor getPlaylistSongs(Playlist playlist) {
-        PlaylistDAO playlistDAO = new PlaylistDAO(context);
-        Cursor cursor = playlistDAO.getPlaylistSongsView(playlist);
-        return cursor;
-    }
-
-
+    public Cursor getPlaylistSongs(Playlist playlist) { return playlistDAO.getPlaylistSongsView(playlist);  }
 
 }

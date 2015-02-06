@@ -1,8 +1,10 @@
 package com.mcfly.pyl.fragments;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,18 +18,17 @@ import com.mcfly.pyl.R;
 import com.mcfly.pyl.adapters.IPlaylistAdapterHelper;
 import com.mcfly.pyl.adapters.PlaylistAdapterHelper;
 import com.mcfly.pyl.business.PlaylistBusiness;
+import com.mcfly.pyl.menu.MainMenu;
 
 
 /**
- * A fragment representing a list of Items.
- * <p />
- * Large screen devices (such as tablets) are supported by replacing the ListView
- * with a GridView.
- * <p />
- * Activities containing this fragment MUST implement the {@link Callbacks}
- * interface.
+ *
  */
 public class PlaylistFragment extends Fragment implements AbsListView.OnItemClickListener {
+
+    private final static String TAG = PlaylistFragment.class.getName();
+
+    public final static String PLAYLIST_LIST_MODE = "PLAYLIST_LIST_MODE";
 
     private OnFragmentInteractionListener mListener;
 
@@ -36,6 +37,8 @@ public class PlaylistFragment extends Fragment implements AbsListView.OnItemClic
     private BaseAdapter mAdapter;
 
     private IPlaylistAdapterHelper playlistAdapterHelper;
+
+    private MainMenu selectedMode;
 
 
     public static PlaylistFragment newInstance(String param1, String param2) {
@@ -54,9 +57,32 @@ public class PlaylistFragment extends Fragment implements AbsListView.OnItemClic
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if(getArguments()==null || !getArguments().containsKey(PLAYLIST_LIST_MODE)) {
+            Log.d(TAG, "   [mode default : MainMenu.MINES]");
+            this.selectedMode = MainMenu.MINES;
+        } else {
+            this.selectedMode = (MainMenu) getArguments().getSerializable(PLAYLIST_LIST_MODE);
+            Log.d(TAG, "   [mode:]"+selectedMode.name());
+        }
+
         PlaylistBusiness business = new PlaylistBusiness(this.getActivity());
         playlistAdapterHelper = new PlaylistAdapterHelper();
-        mAdapter = playlistAdapterHelper.getPlayListAdapter(this.getActivity(), business.getPlaylist());
+
+        Cursor cursor = null;
+
+        if(this.selectedMode.equals(MainMenu.FAVORITES)) {
+            cursor = business.getPlaylist_favorites();
+            Log.d(TAG, "   [cursor:getPlaylist_favorites]");
+        } else if (this.selectedMode.equals(MainMenu.MINES)) {
+            cursor = business.getPlaylist_mines();
+            Log.d(TAG, "   [cursor:getPlaylist_mines]");
+        } else if (this.selectedMode.equals(MainMenu.SHARED)) {
+            cursor = business.getPlaylist_shared();
+            Log.d(TAG, "   [cursor:getPlaylist_shared]");
+        }
+//        cursor = business.getPlaylist();
+
+        mAdapter = playlistAdapterHelper.getPlayListAdapter(this.getActivity(), cursor);
     }
 
     @Override
@@ -114,5 +140,13 @@ public class PlaylistFragment extends Fragment implements AbsListView.OnItemClic
         // TODO: Update argument type and name
         public void onFragmentInteraction(String id);
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+//    public enum modes {
+//        SHARED_LIBRARY,
+//        MINES,
+//        FAVORITES
+//    }
 
 }

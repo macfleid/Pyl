@@ -45,3 +45,5 @@ Temporary Items
 *.class
 *.class
 PYL/app/build/intermediates/classes/debug/com/mcfly/pyl/adapters/ContactListAdapterHelper.class
+*.class
+*.class

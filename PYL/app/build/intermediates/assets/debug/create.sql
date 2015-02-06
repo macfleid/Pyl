@@ -7,7 +7,8 @@ CREATE TABLE "Playlist"(
   "title" VARCHAR(75) NOT NULL,
   "rate" INTEGER NOT NULL,
   "date" DATETIME NOT NULL,
-  "Contact__id" INTEGER NOT NULL,
+  "fav" BIT NOT NULL,
+  "Contact__id" INTEGER,
   CONSTRAINT "fk_Playlist_Contact1"
     FOREIGN KEY("Contact__id")
     REFERENCES "Contact"("_id")
@@ -27,7 +28,7 @@ CREATE TABLE "Song"(
 CREATE INDEX "Song.fk_Song_Playlist_idx" ON "Song"("Playlist__id");
 CREATE TABLE "Comments"(
   "_id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  "text" TEXT NOT NULL,
+  "text" TEXT NOT NULL, 
   "Playlist__id" INTEGER NOT NULL,
   "Contact__id" INTEGER NOT NULL,
   CONSTRAINT "fk_Comments_Playlist1"
