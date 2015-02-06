@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="titles_background" type="color">#990000</item>
+    <item name="titles_background_stroke" type="color">#600000</item>
+    <item name="titles_background_left_stroke" type="color">#CCCCCC</item>
+    <item name="titles_text_color" type="color">#FFFFFF</item>
+</resources>

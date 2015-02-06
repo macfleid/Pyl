@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.mcfly.pyl.R;
 import com.mcfly.pyl.adapters.PlaylistAdapterHelper;
@@ -29,6 +30,7 @@ public class PlaylistSongsFragment extends Fragment {
     public final static String KEY_PLAYLIST_OBJECT = "KEY_PLAYLIST_OBJECT";
 
     private PlaylistBusiness business;
+    private Playlist playlist;
     private Cursor cursor;
 
     @Override
@@ -39,6 +41,7 @@ public class PlaylistSongsFragment extends Fragment {
         if(getArguments()!=null && getArguments().containsKey(KEY_PLAYLIST_OBJECT)) {
             Playlist playlist = (Playlist) getArguments().getSerializable(KEY_PLAYLIST_OBJECT);
             cursor = business.getPlaylistSongs(playlist);
+            this.playlist = playlist;
         }
     }
 
@@ -54,7 +57,10 @@ public class PlaylistSongsFragment extends Fragment {
         BaseAdapter adapter = helper.getPlayListSongsAdapter(getActivity(), SongsCursorViewTransformer.transform(cursor));
 
         ListView listView = (ListView) view.findViewById(R.id.songs_listview);
+        TextView title = (TextView) view.findViewById(R.id.playlist_title);
+
         listView.setAdapter(adapter);
+        title.setText(playlist.gettitle());
 
         return view;
     }

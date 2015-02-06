@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="frame_button" parent="AppTheme">
+        <item name="android:textColor">@color/titles_text_color</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:background">@drawable/button</item>
+    </style>
+
+    <style name="titles" parent="AppTheme">
+        <item name="android:textColor">@color/titles_text_color</item>
+
+    </style>
+
+    <style name="frame_button.leftAction" parent="AppTheme">
+        <item name="android:textColor">@color/titles_text_color</item>
+
+    </style>
+
+</resources>

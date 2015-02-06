@@ -26,9 +26,24 @@ public class PlaylistBusiness {
         return playlistDAO.getPlaylists();
     }
 
+    public Cursor getPlaylist_shared() {
+        return null;
+    }
+
+    public Cursor getPlaylist_favorites() {
+        return null;
+    }
+
+    public Cursor getPlaylist_mines() {
+        return null;
+    }
+
     public Cursor getPlaylistSongs(Playlist playlist) {
         PlaylistDAO playlistDAO = new PlaylistDAO(context);
         Cursor cursor = playlistDAO.getPlaylistSongsView(playlist);
         return cursor;
     }
+
+
+
 }

@@ -4,17 +4,33 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="PLAYLIST TITLE"
-        android:id="@+id/textView"
-        android:layout_gravity="center_horizontal" />
+
+    <FrameLayout
+        style="@style/frame_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            style="@style/frame_button.leftAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFF"
+            android:text=" i "/>
+        <TextView
+            style="@style/titles"
+            android:layout_marginLeft="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="PLAYLIST TITLE"
+            android:id="@+id/playlist_title"
+            android:layout_gravity="center_horizontal" />
+    </FrameLayout>
+
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/songs_listview"
         android:layout_gravity="center_horizontal" />
+
 </LinearLayout><!-- From: file:/C:/Workspace/android/ShakeTimer/PYL/app/src/main/res/layout/playlist_songs.xml -->

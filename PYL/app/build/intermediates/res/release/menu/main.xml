@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity" >
+
+    <item android:id="@+id/action_create_playlist"
+        android:title="@string/action_create_playlist"
+        android:orderInCategory="99"
+        android:icon="@android:drawable/ic_input_add"
+        android:showAsAction="always" />
+
+    <item android:id="@+id/action_contacts"
+        android:title="@string/action_contacts"
+        android:orderInCategory="99"
+        android:showAsAction="never" />
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+</menu>
+<!-- From: file:/C:/Workspace/android/ShakeTimer/PYL/app/src/main/res/menu/main.xml -->
