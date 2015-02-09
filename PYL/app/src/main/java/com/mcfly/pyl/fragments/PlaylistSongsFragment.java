@@ -8,13 +8,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.mcfly.pyl.IPlaylistActions;
 import com.mcfly.pyl.R;
-import com.mcfly.pyl.adapters.PlaylistAdapterHelper;
 import com.mcfly.pyl.adapters.PlaylistSongsAdapterHelper;
 import com.mcfly.pyl.business.PlaylistBusiness;
 import com.mcfly.pyl.sqlite.dal.Playlist;
@@ -29,6 +29,7 @@ public class PlaylistSongsFragment extends Fragment {
 
     public final static String KEY_PLAYLIST_OBJECT = "KEY_PLAYLIST_OBJECT";
 
+    private IPlaylistActions listener;
     private PlaylistBusiness business;
     private Playlist playlist;
     private Cursor cursor;
@@ -58,9 +59,11 @@ public class PlaylistSongsFragment extends Fragment {
 
         ListView listView = (ListView) view.findViewById(R.id.songs_listview);
         TextView title = (TextView) view.findViewById(R.id.playlist_title);
+        TextView backButton = (TextView) view.findViewById(R.id.back_buttton);
 
         listView.setAdapter(adapter);
         title.setText(playlist.gettitle());
+        bindBackAction(backButton);
 
         return view;
     }
@@ -68,5 +71,17 @@ public class PlaylistSongsFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+        this.listener = (IPlaylistActions) activity;
+    }
+
+    ///////////////////////////////////////////////////////////////////
+
+    private void bindBackAction(View view) {
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.back();
+            }
+        });
     }
 }

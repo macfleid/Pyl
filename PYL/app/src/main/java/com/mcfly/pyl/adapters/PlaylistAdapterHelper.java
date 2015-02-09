@@ -41,7 +41,7 @@ public class PlaylistAdapterHelper implements IPlaylistAdapterHelper {
     @Override
     public BaseAdapter getPlayListAdapter(Context context, Cursor cursor) {
         Log.d(TAG, "[getPlayListAdapter]");
-        List<PlaylistUiModel> playlistUiModel = PlaylistTransformer.transform(cursor);
+        List<PlaylistUiModel> playlistUiModel = PlaylistTransformer.transform(context,cursor);
         List<Playlist> playlistLists = PlaylistTransformer.transformToDbModel(cursor);
         playListAdapter result = new playListAdapter(context);
         result.setPlaylistUiModels(playlistUiModel);
@@ -57,6 +57,8 @@ public class PlaylistAdapterHelper implements IPlaylistAdapterHelper {
 
     private class playListAdapter extends ArrayAdapter<PlaylistUiModel> {
 
+        private Context context;
+
         private List<PlaylistUiModel> playlistUiModels;
 
         private List<Playlist> playlists;
@@ -67,6 +69,7 @@ public class PlaylistAdapterHelper implements IPlaylistAdapterHelper {
         private playListAdapter(Context context) {
             super(context, R.layout.playlist_element);
             this.listener = (IPlaylistActions) context;
+            this.context = context;
         }
 
         @Override
@@ -114,7 +117,9 @@ public class PlaylistAdapterHelper implements IPlaylistAdapterHelper {
 
             title.setText(model.getTitle());
             ratingBar.setRating(model.getAverageRating());
-            textResume.setText(model.getSharedBy());
+            String stringTextResume = model.getSharedBy()!=null ?
+                    String.format( context.getString(R.string.playlist_sharedby_label),model.getSharedBy()) : null;
+            textResume.setText(stringTextResume);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -1,37 +1,64 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.mcfly.pyl.CreatePlaylistActivity">
 
-
-
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/create_playlist_title"
         android:hint="@string/create_playlist_title_hint"
+        android:singleLine="true"
         android:maxLength="50"
+        android:layout_margin="5dp"
         />
+
+    <Button
+        android:id="@+id/create_playlist_share_list"
+        android:layout_width="fill_parent"
+        android:layout_below="@+id/create_playlist_title"
+        android:text="@string/create_playlist_button_share_label"
+        android:layout_height="wrap_content">
+        </Button>
+
+    <TextView
+        android:id="@+id/create_playlist_share_list_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="italic"
+        android:text="No contact selected"
+        android:padding="10dp"
+        android:layout_below="@+id/create_playlist_share_list"/>
 
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:gravity="right"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
         <Button
+            style="@style/frame_button.leftAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_simple"
             android:text="@string/create_playlist_title_cancel"
             android:id="@+id/create_playlist_cancel" />
         <Button
+            style="@style/frame_button.leftAction"
+            android:layout_marginLeft="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_simple"
             android:text="@string/create_playlist_title_save"
             android:id="@+id/create_playlist_save" />
     </LinearLayout>
 
 
-</LinearLayout>
+</RelativeLayout>
 <!-- From: file:/C:/Workspace/android/ShakeTimer/PYL/app/src/main/res/layout/activity_create_playlist.xml -->

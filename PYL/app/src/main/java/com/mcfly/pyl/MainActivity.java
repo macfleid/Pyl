@@ -132,6 +132,11 @@ public class MainActivity extends Activity implements ActionBar.TabListener, Pla
         mSectionsPagerAdapter.switchFragment(mViewPager.getCurrentItem(), fragment);
     }
 
+    @Override
+    public void back() {
+        mSectionsPagerAdapter.refreshPosition(this.mViewPager.getCurrentItem());
+    }
+
     /////////////////////////////////////////////////////////////////////////////////////////
 
 

@@ -8,4 +8,6 @@ import com.mcfly.pyl.sqlite.dal.Playlist;
 public interface IPlaylistActions {
 
     public void showPlaylist(Playlist playlist);
+
+    public void back();
 }

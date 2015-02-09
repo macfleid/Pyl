@@ -35,6 +35,26 @@ public class ContactListBusiness {
         return cursor;
     }
 
+    public String getContact(Contact contact) {
+        if(contact==null || contact.get_id()==0) {
+            return null;
+        }
+        Cursor cursor = null;
+        Uri uri = ContactsContract.Contacts.CONTENT_URI;
+
+        String[] projection = null;
+        String selection = String.format("%s=?",ContactsContract.Contacts._ID);
+        String order = "";
+        String[] selectionArgs = { String.valueOf(contact.get_id()) };
+        cursor = context.getContentResolver().query(uri,projection,selection,selectionArgs,order);
+        if(cursor==null || !cursor.moveToFirst()) {
+            return null;
+        }
+        String result = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+        cursor.close();
+        return result;
+    }
+
     public Cursor getAppContacts() {
         return null;
     }

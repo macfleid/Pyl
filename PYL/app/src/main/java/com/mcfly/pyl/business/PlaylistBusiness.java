@@ -3,11 +3,14 @@ package com.mcfly.pyl.business;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.mcfly.pyl.business.exceptions.PlayListCreationException;
 import com.mcfly.pyl.sqlite.dal.Playlist;
 import com.mcfly.pyl.sqlite.dal.Song;
 import com.mcfly.pyl.sqlite.dao.extended.PlaylistDAO;
+import com.mcfly.pyl.view.model.PlaylistCreationModel;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,5 +39,21 @@ public class PlaylistBusiness {
     }
 
     public Cursor getPlaylistSongs(Playlist playlist) { return playlistDAO.getPlaylistSongsView(playlist);  }
+
+    /**
+     * TODO : secure title from SQL injection
+     * @param model
+     * @throws PlayListCreationException
+     */
+    public void createPlaylist(PlaylistCreationModel model) throws PlayListCreationException {
+        Playlist newPlaylist = new Playlist();
+        newPlaylist.setdate(new Date());
+        newPlaylist.setfav(false);
+        newPlaylist.setrate(0);
+        newPlaylist.settitle(model.getTitle());
+        if(playlistDAO.save(newPlaylist) == -1) {
+            throw new PlayListCreationException("Error while creating playlist");
+        }
+    }
 
 }

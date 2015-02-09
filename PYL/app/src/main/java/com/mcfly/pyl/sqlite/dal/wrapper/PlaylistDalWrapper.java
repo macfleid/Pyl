@@ -29,13 +29,23 @@ public class PlaylistDalWrapper {
     public static ContentValues getContentValueFromObject(Serializable object) { 
         Playlist object_ = (Playlist) object;
         ContentValues values = new ContentValues();
-        values.put(Playlist.COLUMN__ID,object_.get_id());
         values.put(Playlist.COLUMN_TITLE,object_.gettitle());
         values.put(Playlist.COLUMN_RATE,object_.getrate());
         String dateString = DateGetter.getInstance().getStringFromDate(object_.getdate());
         values.put(Playlist.COLUMN_DATE,dateString);
         values.put(Playlist.COLUMN_FAV,object_.getfav());
         values.put(Playlist.COLUMN_CONTACT__ID,object_.getContact__id());
+        return values;
+    }
+
+    public static ContentValues getContentValueFromObject_WithoutContact(Serializable object) {
+        Playlist object_ = (Playlist) object;
+        ContentValues values = new ContentValues();
+        values.put(Playlist.COLUMN_TITLE,object_.gettitle());
+        values.put(Playlist.COLUMN_RATE,object_.getrate());
+        String dateString = DateGetter.getInstance().getStringFromDate(object_.getdate());
+        values.put(Playlist.COLUMN_DATE,dateString);
+        values.put(Playlist.COLUMN_FAV,object_.getfav());
         return values;
     }
 

@@ -24,6 +24,7 @@
     <string name="app_name">PYL</string>
     <string name="contact_activity_title">Manage contacts</string>
     <string name="create_activity_title">Create playlist</string>
+    <string name="create_playlist_button_share_label">Manage sharing list</string>
     <string name="create_playlist_title_cancel">Cancel</string>
     <string name="create_playlist_title_hint">Title</string>
     <string name="create_playlist_title_save">Save</string>
@@ -31,6 +32,7 @@
     <string name="menu_favorites">Favorites</string>
     <string name="menu_mines">Mines</string>
     <string name="menu_shared">Shared</string>
+    <string name="playlist_sharedby_label">Shared by %s</string>
     <!-- From: file:/C:/Workspace/android/ShakeTimer/PYL/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
@@ -45,7 +47,8 @@
     </style>
     <style name="frame_button.leftAction" parent="AppTheme">
         <item name="android:textColor">@color/titles_text_color</item>
-
+        <item name="android:textSize">15dp</item>
+        <item name="android:padding">5dp</item>
     </style>
     <style name="titles" parent="AppTheme">
         <item name="android:textColor">@color/titles_text_color</item>

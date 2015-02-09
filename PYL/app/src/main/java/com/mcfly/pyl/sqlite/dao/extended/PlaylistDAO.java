@@ -1,5 +1,6 @@
 package com.mcfly.pyl.sqlite.dao.extended;
 
+import android.content.ContentValues;
 import android.content.Context;
 
 import com.mcfly.pyl.sqlite.dal.Contact;
@@ -28,7 +29,13 @@ public class PlaylistDAO extends BaseDAO implements IPlaylist {
 
     @Override
     public int save(Playlist element) {
-       int result = add(PlaylistDalWrapper.getContentValueFromObject(element));
+       ContentValues contentValues = null;
+       if(element.getContact__id()==0) {
+            contentValues = PlaylistDalWrapper.getContentValueFromObject_WithoutContact(element);
+       } else {
+           contentValues = PlaylistDalWrapper.getContentValueFromObject(element);
+       }
+       int result = add(contentValues);
        return result;
     }
 

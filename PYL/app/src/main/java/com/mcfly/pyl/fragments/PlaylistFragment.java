@@ -80,8 +80,6 @@ public class PlaylistFragment extends Fragment implements AbsListView.OnItemClic
             cursor = business.getPlaylist_shared();
             Log.d(TAG, "   [cursor:getPlaylist_shared]");
         }
-//        cursor = business.getPlaylist();
-
         mAdapter = playlistAdapterHelper.getPlayListAdapter(this.getActivity(), cursor);
     }
 

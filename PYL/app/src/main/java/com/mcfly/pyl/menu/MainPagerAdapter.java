@@ -79,4 +79,11 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
         refreshedFragment = fragment;
         this.notifyDataSetChanged();
     }
+
+    public void refreshPosition(int position) {
+        if(position < 0 || position > this.getCount()) {
+            return;
+        }
+        switchFragment(position, MainMenu.values()[position].getFragment());
+    }
 }
