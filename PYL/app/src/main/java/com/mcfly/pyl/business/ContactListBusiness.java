@@ -31,7 +31,7 @@ public class ContactListBusiness {
         String selection = "";
         String order = "";
         String[] selectionArgs = null;
-        cursor = context.getContentResolver().query(uri,projection,selection,selectionArgs,order);
+        cursor = context.getContentResolver().query(uri,null,selection,selectionArgs,order);
         return cursor;
     }
 

@@ -27,9 +27,20 @@
         <activity
             android:name="com.mcfly.pyl.ContactListActivity"
             android:label="@string/app_name" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name="com.mcfly.pyl.CreatePlaylistActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateHidden" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name="com.mcfly.pyl.AddSongActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="stateHidden" >
             <meta-data

@@ -13,14 +13,14 @@ import com.mcfly.pyl.business.ContactListBusiness;
 /**
  *
  */
-public class ContactListActivity extends Activity {
+public class AddSongActivity extends Activity {
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_contact_list);
-        setTitle(getString(R.string.contact_activity_title));
+        setContentView(R.layout.activity_add_song);
+        setTitle(getString(R.string.add_song_activity_title));
 
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -33,12 +33,6 @@ public class ContactListActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        ContactListBusiness business = new ContactListBusiness(this);
-
-        ListView listView = (ListView) findViewById(R.id.contact_listview);
-        listView.setAdapter(ContactListAdapterHelper.getContactListAdapter(this,business.getAvailableContacts()));
-
-        
     }
 
     @Override

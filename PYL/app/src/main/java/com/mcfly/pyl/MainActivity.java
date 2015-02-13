@@ -26,8 +26,12 @@ public class MainActivity extends Activity implements ActionBar.TabListener, Pla
 
     private final static String TAG = MainActivity.class.getName();
 
-    MainPagerAdapter mSectionsPagerAdapter;
-    ViewPager mViewPager;
+    private final static int MENU_DEFAULT = R.menu.main;
+    private final static int MENU_SONGLIST = R.menu.song_list_menu;
+
+    private MainPagerAdapter mSectionsPagerAdapter;
+    private ViewPager mViewPager;
+    private int currentMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,8 @@ public class MainActivity extends Activity implements ActionBar.TabListener, Pla
 
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+        currentMenu = MENU_DEFAULT;
 
         mSectionsPagerAdapter = new MainPagerAdapter(getFragmentManager(), this);
 
@@ -58,7 +64,9 @@ public class MainActivity extends Activity implements ActionBar.TabListener, Pla
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
+        Log.d(TAG,"[onCreateOptionsMenu]");
+        menu.clear();
+        getMenuInflater().inflate(currentMenu, menu);
         return true;
     }
 
@@ -72,6 +80,9 @@ public class MainActivity extends Activity implements ActionBar.TabListener, Pla
             return true;
         } else if (id == R.id.action_create_playlist) {
             bindCreatePlaylist();
+            return true;
+        } else if (id == R.id.action_add_song) {
+            bindSearchSongActivity();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -119,6 +130,11 @@ public class MainActivity extends Activity implements ActionBar.TabListener, Pla
         startActivity(intent);
     }
 
+    private void bindSearchSongActivity() {
+        Intent intent = new Intent(this, AddSongActivity.class);
+        startActivity(intent);
+    }
+
     ////////////////////////////////////////////////////////////////////////////////////////
     ///// IPlaylistActions
     ////////////////////////////////////////////////////////////////////////////////////////
@@ -129,11 +145,15 @@ public class MainActivity extends Activity implements ActionBar.TabListener, Pla
         Bundle bundle = new Bundle();
         bundle.putSerializable(PlaylistSongsFragment.KEY_PLAYLIST_OBJECT,playlist);
         fragment.setArguments(bundle);
+        currentMenu = MENU_SONGLIST;
+        invalidateOptionsMenu();
         mSectionsPagerAdapter.switchFragment(mViewPager.getCurrentItem(), fragment);
     }
 
     @Override
     public void back() {
+        currentMenu = MENU_DEFAULT;
+        invalidateOptionsMenu();
         mSectionsPagerAdapter.refreshPosition(this.mViewPager.getCurrentItem());
     }
 

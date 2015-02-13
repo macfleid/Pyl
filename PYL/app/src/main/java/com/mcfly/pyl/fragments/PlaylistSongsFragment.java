@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -28,6 +31,7 @@ public class PlaylistSongsFragment extends Fragment {
     private final static String TAG = PlaylistSongsFragment.class.getName();
 
     public final static String KEY_PLAYLIST_OBJECT = "KEY_PLAYLIST_OBJECT";
+    public final static String KEY_EDIT_MODE = "KEY_EDIT_MODE";
 
     private IPlaylistActions listener;
     private PlaylistBusiness business;
@@ -73,6 +77,8 @@ public class PlaylistSongsFragment extends Fragment {
         super.onAttach(activity);
         this.listener = (IPlaylistActions) activity;
     }
+
+
 
     ///////////////////////////////////////////////////////////////////
 

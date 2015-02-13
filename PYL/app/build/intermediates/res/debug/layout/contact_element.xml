@@ -9,9 +9,9 @@ android:padding="6dip">
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_alignParentTop="true"
-    android:src="@android:drawable/ic_menu_search"
+    android:src="@drawable/ic_contact"
     android:layout_alignParentBottom="true"
-    android:layout_marginRight="6dip" />
+    android:layout_marginRight="0dip" />
 <TextView
     android:id="@+id/contact_account"
     android:layout_width="match_parent"

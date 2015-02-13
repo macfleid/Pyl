@@ -11,6 +11,8 @@
     <string name="menu_mines">Mines</string>
     <string name="menu_favorites">Favorites</string>
 
+    <string name="menu_add_song">Add song</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- PLAYLIST LIST -->
@@ -26,5 +28,11 @@
 
     <!-- CONTACT LIST -->
     <string name="contact_activity_title">Manage contacts</string>
+
+    <!-- ADD SONG -->
+    <string name="add_song_activity_title">Add a song</string>
+    <string name="add_song_activity_search_hint">Search a song</string>
+    <string name="add_song_activity_button_save">Confirm</string>
+
 
 </resources>
